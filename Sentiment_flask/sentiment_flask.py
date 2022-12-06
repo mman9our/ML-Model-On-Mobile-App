@@ -11,19 +11,19 @@ tokenizer = Tokenizer(num_words=1000)
 labels = ['negative', 'positive']
 
 # load sentiment model
-json_file = open('1000w-model.json', 'r')
+json_file = open('Sentiment_flask/1000w-model.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 model = model_from_json(loaded_model_json)
-model.load_weights('1000w-model.h5')
+model.load_weights('Sentiment_flask/1000w-model.h5')
 
 
 # load json file
-with open("dictionary.json") as json_file:
+with open("Sentiment_flask/dictionary.json") as json_file:
     json_tokenizer = json.load(json_file)
 
 
-with open('dictionary.json', 'r') as dict_file:
+with open('Sentiment_flask/dictionary.json', 'r') as dict_file:
     dictionary = json.load(dict_file)
 
 
