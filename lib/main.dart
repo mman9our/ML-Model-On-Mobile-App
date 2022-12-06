@@ -171,14 +171,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: 5),
-              // Text(
-              //   "النسبة: $sentimentScore",
-              //   style: TextStyle(
-              //     color: Color.fromARGB(0xFF, 43, 45, 57),
-              //     fontSize: 18,
-              //     fontWeight: FontWeight.w400,
-              //   ),
-              // ),
             ],
           ),
         ),
