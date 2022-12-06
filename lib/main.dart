@@ -1,7 +1,6 @@
 import 'dart:convert';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
-
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -14,6 +13,30 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('ar', 'AE'),
+      ],
+      theme: ThemeData(
+        fontFamily: 'Cairo',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              headline5: TextStyle(
+                color: Colors.black87,
+                fontSize: 22,
+                fontFamily: 'Cario',
+              ),
+              headline6: TextStyle(
+                color: Colors.black87,
+                fontSize: 26,
+                fontFamily: 'Cario',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+      ),
       title: "Sentiment Analysis for Shoppy App",
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
@@ -31,7 +54,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String text = "";
   String sentimentReuslt = "";
-  String sentimentScore = "";
+  // String sentimentScore = "";
 
   final _formKey = GlobalKey<FormState>();
 
@@ -56,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Form(
                   key: _formKey,
                   child: TextField(
+                    style: Theme.of(context).textTheme.headline5,
                     onChanged: (value) {
                       setState(() {
                         text = value;
@@ -64,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Color.fromARGB(0xFF, 230, 230, 240),
-                      hintText: "Write a text...",
+                      hintText: "أدخل النص",
                       focusedBorder: OutlineInputBorder(
                           borderSide:
                               BorderSide(color: Colors.black87, width: 2),
@@ -99,16 +123,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (response.statusCode == 200) {
                     final jsonResponse =
                         jsonDecode(response.body) as Map<String, dynamic>;
+
                     sentimentReuslt = jsonResponse['sentiment'];
-                    sentimentScore = jsonResponse['score'];
+                    // sentimentScore = jsonResponse['score'];
 
                     print(sentimentReuslt);
-                    
-                    print(sentimentScore);
+
+                    // print(sentimentScore);
 
                     setState(() {
                       sentimentReuslt = sentimentReuslt;
-                      sentimentScore = sentimentScore;
+                      // sentimentScore = sentimentScore;
                     });
                   } else {
                     print("Request field with status: ${response.statusCode}");
@@ -120,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   size: 30,
                 ),
                 label: Text(
-                  "Predict Text",
+                  "توقع المشاعر",
                   style: Theme.of(context)
                       .textTheme
                       .headline6
@@ -129,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 10),
               Text(
-                "Text : $text",
+                "النص : $text",
                 style: TextStyle(
                   color: Color.fromARGB(0xFF, 43, 45, 57),
                   fontSize: 18,
@@ -138,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 5),
               Text(
-                "Sentiment : $sentimentReuslt",
+                "التوقع : $sentimentReuslt",
                 style: TextStyle(
                   color: Color.fromARGB(0xFF, 43, 45, 57),
                   fontSize: 18,
@@ -146,15 +171,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: 5),
-              Text(
-                "Score: $sentimentScore",
-                style: TextStyle(
-                  color: Color.fromARGB(0xFF, 43, 45, 57),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              SizedBox(height: 5),
+              // Text(
+              //   "النسبة: $sentimentScore",
+              //   style: TextStyle(
+              //     color: Color.fromARGB(0xFF, 43, 45, 57),
+              //     fontSize: 18,
+              //     fontWeight: FontWeight.w400,
+              //   ),
+              // ),
             ],
           ),
         ),
