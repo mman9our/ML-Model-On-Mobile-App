@@ -21,6 +21,7 @@ Windows
 ## References:
 * Flask tutorial: https://www.youtube.com/watch?v=MwZwr5Tvyxo&list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH
 * Tensorflow: https://www.tensorflow.org/
+* Sentiment Analysis Arabic Model: https://github.com/motazsaad/arabic-sentiment-analysis
 
 This project is a starting point for a Flutter application.
 
